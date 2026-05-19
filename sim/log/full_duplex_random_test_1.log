@@ -1,7 +1,7 @@
 # vsim -sv_seed 1 -voptargs="+acc" -assertdebug -c testbench -do " log -r /*;run -all;" -l full_duplex_random_test_1.log "+UVM_TESTNAME=full_duplex_random_test" "+UVM_VERBOSITY=UVM_HIGH" 
-# Start time: 09:44:06 on May 19,2026
-# Loading /tmp/minhphan_0508@ictc-eda-ldap.ipa.test_dpi_99511/linux_x86_64_gcc-11/export_tramp.so
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Start time: 10:19:43 on May 19,2026
+# Loading /tmp/minhphan_0508@ictc-eda-ldap.ipa.test_dpi_47917/linux_x86_64_gcc-11/export_tramp.so
+# ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Sim-64
 # //  Version 10.6d_1 linux_x86_64 Apr 11 2018
 # //
@@ -29,9 +29,9 @@
 # Loading work.testbench(fast)
 # Loading work.uart_if(fast)
 # Loading work.uart_dut(fast)
-# Compiling /tmp/minhphan_0508@ictc-eda-ldap.ipa.test_dpi_99511/linux_x86_64_gcc-5.3.0/exportwrapper.c
-# Compiling /tmp/minhphan_0508@ictc-eda-ldap.ipa.test_dpi_99511/linux_x86_64_gcc-11/exportwrapper.c
-# Loading /tmp/minhphan_0508@ictc-eda-ldap.ipa.test_dpi_99511/linux_x86_64_gcc-11/vsim_auto_compile.so
+# Compiling /tmp/minhphan_0508@ictc-eda-ldap.ipa.test_dpi_47917/linux_x86_64_gcc-5.3.0/exportwrapper.c
+# Compiling /tmp/minhphan_0508@ictc-eda-ldap.ipa.test_dpi_47917/linux_x86_64_gcc-11/exportwrapper.c
+# Loading /tmp/minhphan_0508@ictc-eda-ldap.ipa.test_dpi_47917/linux_x86_64_gcc-11/vsim_auto_compile.so
 #  log -r /*
 # run -all
 # UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
@@ -76,25 +76,139 @@
 # 
 # UVM_INFO ./../uart_vip/uart_agent.sv(31) @ 0: uvm_test_top.env.lhs_agent [uart_agent] Configrued as ACTIVE agent
 # UVM_INFO ./../uart_vip/uart_agent.sv(31) @ 0: uvm_test_top.env.rhs_agent [uart_agent] Configrued as ACTIVE agent
-# UVM_FATAL ./../tb/uart_scoreboard.sv(37) @ 0: uvm_test_top.env.uart_sb [uart_scoreboard] Fail to get lhs_cfg from uvm_config_db
-# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_report_server.svh(847) @ 0: reporter [UVM/REPORT/SERVER] 
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_traversal.svh(279) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+# UVM_INFO ./../testcases/uart_base_test.sv(42) @ 0: uvm_test_top [full_duplex_random_test] start_of_simulation_phase: Entered...
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_root.svh(579) @ 0: reporter [UVMTOP] UVM testbench topology:
+# ---------------------------------------------------------------
+# Name                       Type                     Size  Value
+# ---------------------------------------------------------------
+# uvm_test_top               full_duplex_random_test  -     @344 
+#   env                      uart_env                 -     @367 
+#     lhs_agent              uart_agent               -     @403 
+#       driver               uart_driver              -     @468 
+#         rsp_port           uvm_analysis_port        -     @487 
+#         seq_item_port      uvm_seq_item_pull_port   -     @477 
+#       monitor              uart_monitor             -     @435 
+#         monitor_rx         uvm_analysis_port        -     @444 
+#         monitor_tx         uvm_analysis_port        -     @454 
+#       sequencer            uart_sequencer           -     @497 
+#         rsp_export         uvm_analysis_export      -     @506 
+#         seq_item_export    uvm_seq_item_pull_imp    -     @624 
+#         arbitration_queue  array                    0     -    
+#         lock_queue         array                    0     -    
+#         num_last_reqs      integral                 32    'd1  
+#         num_last_rsps      integral                 32    'd1  
+#     rhs_agent              uart_agent               -     @412 
+#       driver               uart_driver              -     @683 
+#         rsp_port           uvm_analysis_port        -     @702 
+#         seq_item_port      uvm_seq_item_pull_port   -     @692 
+#       monitor              uart_monitor             -     @650 
+#         monitor_rx         uvm_analysis_port        -     @659 
+#         monitor_tx         uvm_analysis_port        -     @669 
+#       sequencer            uart_sequencer           -     @712 
+#         rsp_export         uvm_analysis_export      -     @721 
+#         seq_item_export    uvm_seq_item_pull_imp    -     @839 
+#         arbitration_queue  array                    0     -    
+#         lock_queue         array                    0     -    
+#         num_last_reqs      integral                 32    'd1  
+#         num_last_rsps      integral                 32    'd1  
+#     uart_sb                uart_scoreboard          -     @421 
+#       lhs_rx_export        uvm_analysis_imp_lhs_rx  -     @870 
+#       lhs_tx_export        uvm_analysis_imp_lhs_tx  -     @860 
+#       rhs_rx_export        uvm_analysis_imp_rhs_rx  -     @890 
+#       rhs_tx_export        uvm_analysis_imp_rhs_tx  -     @880 
+# ---------------------------------------------------------------
+# 
+# UVM_INFO ./../testcases/uart_base_test.sv(44) @ 0: uvm_test_top [full_duplex_random_test] start_of_simulation_phase: Exiting...
+# UVM_INFO ./../testcases/full_duplex_random_test.sv(22) @ 0: uvm_test_top [full_duplex_random_test] run_phase: Start sequences
+# UVM_INFO ./../sequences/uart_sequence.sv(9) @ 0: uvm_test_top.env.lhs_agent.sequencer@@lhs_seq [uart_sequence] Entered...
+# UVM_INFO ./../sequences/uart_sequence.sv(9) @ 0: uvm_test_top.env.rhs_agent.sequencer@@rhs_seq [uart_sequence] Entered...
+# UVM_INFO ./../sequences/uart_sequence.sv(15) @ 0: uvm_test_top.env.lhs_agent.sequencer@@lhs_seq [uart_sequence] Sending transaction:
+# ---------------------------------------------------------------------------------------------------
+# Name                           Type              Size  Value                                       
+# ---------------------------------------------------------------------------------------------------
+# req                            uart_transaction  -     @960                                        
+#   data                         integral          14    'hccc                                       
+#   begin_time                   time              64    0                                           
+#   depth                        int               32    'd2                                         
+#   parent sequence (name)       string            7     lhs_seq                                     
+#   parent sequence (full name)  string            44    uvm_test_top.env.lhs_agent.sequencer.lhs_seq
+#   sequencer                    string            36    uvm_test_top.env.lhs_agent.sequencer        
+# ---------------------------------------------------------------------------------------------------
+# 
+# UVM_INFO ./../sequences/uart_sequence.sv(15) @ 0: uvm_test_top.env.rhs_agent.sequencer@@rhs_seq [uart_sequence] Sending transaction:
+# ---------------------------------------------------------------------------------------------------
+# Name                           Type              Size  Value                                       
+# ---------------------------------------------------------------------------------------------------
+# req                            uart_transaction  -     @966                                        
+#   data                         integral          14    'h1949                                      
+#   begin_time                   time              64    0                                           
+#   depth                        int               32    'd2                                         
+#   parent sequence (name)       string            7     rhs_seq                                     
+#   parent sequence (full name)  string            44    uvm_test_top.env.rhs_agent.sequencer.rhs_seq
+#   sequencer                    string            36    uvm_test_top.env.rhs_agent.sequencer        
+# ---------------------------------------------------------------------------------------------------
+# 
+# UVM_INFO ./../uart_vip/uart_driver.sv(40) @ 0: uvm_test_top.env.lhs_agent.driver [uart_driver] [Driver] Transmit data: 00110011001100
+# UVM_INFO ./../uart_vip/uart_driver.sv(40) @ 0: uvm_test_top.env.rhs_agent.driver [uart_driver] [Driver] Transmit data: 01100101001001
+# UVM_INFO ./../uart_vip/uart_driver.sv(73) @ 128412000: uvm_test_top.env.lhs_agent.driver [uart_driver] [Driver] End of transmit
+# UVM_INFO ./../uart_vip/uart_driver.sv(73) @ 128412000: uvm_test_top.env.rhs_agent.driver [uart_driver] [Driver] End of transmit
+# UVM_INFO ./../sequences/uart_sequence.sv(19) @ 128412000: uvm_test_top.env.lhs_agent.sequencer@@lhs_seq [uart_sequence] Received transaction:
+# ---------------------------------------------------------------------------------------------------
+# Name                           Type              Size  Value                                       
+# ---------------------------------------------------------------------------------------------------
+# req                            uart_transaction  -     @960                                        
+#   data                         integral          14    'hccc                                       
+#   begin_time                   time              64    0                                           
+#   end_time                     time              64    0                                           
+#   depth                        int               32    'd2                                         
+#   parent sequence (name)       string            7     lhs_seq                                     
+#   parent sequence (full name)  string            44    uvm_test_top.env.lhs_agent.sequencer.lhs_seq
+#   sequencer                    string            36    uvm_test_top.env.lhs_agent.sequencer        
+# ---------------------------------------------------------------------------------------------------
+# 
+# UVM_INFO ./../sequences/uart_sequence.sv(19) @ 128412000: uvm_test_top.env.rhs_agent.sequencer@@rhs_seq [uart_sequence] Received transaction:
+# ---------------------------------------------------------------------------------------------------
+# Name                           Type              Size  Value                                       
+# ---------------------------------------------------------------------------------------------------
+# req                            uart_transaction  -     @966                                        
+#   data                         integral          14    'h1949                                      
+#   begin_time                   time              64    0                                           
+#   end_time                     time              64    0                                           
+#   depth                        int               32    'd2                                         
+#   parent sequence (name)       string            7     rhs_seq                                     
+#   parent sequence (full name)  string            44    uvm_test_top.env.rhs_agent.sequencer.rhs_seq
+#   sequencer                    string            36    uvm_test_top.env.rhs_agent.sequencer        
+# ---------------------------------------------------------------------------------------------------
+# 
+# UVM_INFO ./../testcases/full_duplex_random_test.sv(32) @ 128413000: uvm_test_top [full_duplex_random_test] run_phase: Done...
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_objection.svh(1271) @ 128413000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ./../tb/uart_scoreboard.sv(104) @ 128413000: uvm_test_top.env.uart_sb [uart_scoreboard] [Scoreboard] ==========SCOREBOARD SUMARY==========
+# UVM_INFO ./../tb/uart_scoreboard.sv(105) @ 128413000: uvm_test_top.env.uart_sb [uart_scoreboard] [PASS]:0 | [FAIL]:0
+# UVM_INFO ./../tb/uart_scoreboard.sv(107) @ 128413000: uvm_test_top.env.uart_sb [uart_scoreboard] [Scoreboard] TEST PASSED
+# UVM_INFO /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_report_server.svh(847) @ 128413000: reporter [UVM/REPORT/SERVER] 
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
-# UVM_INFO :   10
+# UVM_INFO :   30
 # UVM_WARNING :    0
 # UVM_ERROR :    0
-# UVM_FATAL :    1
+# UVM_FATAL :    0
 # ** Report counts by id
 # [NO_DPI_TSTNAME]     1
 # [RNTST]     1
+# [TEST_DONE]     1
+# [UVM/COMP/NAMECHECK]     1
 # [UVM/RELNOTES]     1
-# [full_duplex_random_test]     3
+# [UVMTOP]     1
+# [full_duplex_random_test]     7
 # [uart_agent]     2
 # [uart_configuration]     2
-# [uart_scoreboard]     1
+# [uart_driver]     4
+# [uart_scoreboard]     3
+# [uart_sequence]     6
 # 
-# ** Note: $finish    : /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_root.svh(135)
-#    Time: 0 ns  Iteration: 10  Region: /uvm_pkg::uvm_phase::m_run_phases
-# End time: 09:44:09 on May 19,2026, Elapsed time: 0:00:03
+# ** Note: $finish    : /ictc/other/tools/QuestaDVA/questasim/verilog_src/uvm-1.2/src/base/uvm_root.svh(517)
+#    Time: 128413 us  Iteration: 68  Instance: /testbench
+# End time: 10:19:48 on May 19,2026, Elapsed time: 0:00:05
 # Errors: 0, Warnings: 0

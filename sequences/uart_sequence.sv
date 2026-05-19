@@ -9,7 +9,7 @@ class uart_sequence extends uvm_sequence#(uart_transaction);
         `uvm_info(get_type_name(),"Entered...",UVM_LOW)
         req = uart_transaction::type_id::create("req");
         start_item(req);
-        if(req.randomize()) begin
+        if(!req.randomize()) begin
             `uvm_fatal(get_type_name(),"Fail to randomize uart_transaction")
         end
         `uvm_info(get_type_name(),$sformatf("Sending transaction:\n%s",req.sprint()),UVM_LOW)

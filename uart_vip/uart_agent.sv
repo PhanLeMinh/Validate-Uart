@@ -31,21 +31,15 @@ class uart_agent extends uvm_agent;
             `uvm_info(get_type_name(),"Configrued as ACTIVE agent",UVM_LOW)
         end
 
+        monitor   = uart_monitor::type_id::create("monitor",this);
+        uvm_config_db#(virtual uart_if)::set(this,"monitor","vif",vif);
+        uvm_config_db#(uart_configuration)::set(this,"monitor","cfg",cfg);
+
         if(is_active == UVM_ACTIVE) begin
             driver    = uart_driver::type_id::create("driver",this);
             sequencer = uart_sequencer::type_id::create("sequencer",this);
-        end
-        else begin
-            monitor   = uart_monitor::type_id::create("monitor",this);
-        end
-
-        if(is_active == UVM_ACTIVE) begin
             uvm_config_db#(virtual uart_if)::set(this,"driver","vif",vif);
             uvm_config_db#(uart_configuration)::set(this,"driver","cfg",cfg);
-        end
-        else begin
-            uvm_config_db#(virtual uart_if)::set(this,"monitor","vif",vif);
-            uvm_config_db#(uart_configuration)::set(this,"monitor","cfg",cfg);
         end
     endfunction:build_phase
 
