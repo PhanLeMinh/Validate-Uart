@@ -45,13 +45,20 @@ class uart_monitor extends uvm_monitor;
         total_bit = cal_total_bit();
 
         wait(uart_vif.tx == 1'b0);
-        @(bit_time);
+        #(bit_time + bit_time/2);
         `uvm_info(get_type_name(),"[Monitor] Start capture TX", UVM_LOW);
 
-        for(int i = total_bit - 1; i>=0; i--) begin
+        for(int i = 0; i < uart_cfg.data_width; i++) begin
             trans.data[i] = uart_vif.tx;
-            @(bit_time);
+            #(bit_time);
         end
+
+        if(uart_cfg.parity != uart_configuration::NONE) begin // skip parity bit
+            #(bit_time);
+        end
+
+        #(bit_time * uart_cfg.num_of_stop_bit); // skip stop bit
+
         `uvm_info(get_type_name(), $sformatf("[Monitor] TX captured: %b", trans.data),UVM_LOW)
         monitor_tx.write(trans);
     endtask
@@ -67,14 +74,20 @@ class uart_monitor extends uvm_monitor;
 
         wait(uart_vif.rx == 1'b0);
 
-        @(bit_time);
+        #(bit_time + bit_time/2);
 
         `uvm_info(get_type_name(),"[Monitor] Start capture RX",UVM_LOW)
 
-        for(int i = total_bit - 1; i>=0;i--) begin
+        for(int i=0;i < uart_cfg.data_width;i++) begin
             trans.data[i] = uart_vif.rx;
-            @(bit_time);
+            #(bit_time);
         end
+
+        if(uart_cfg.parity != uart_configuration::NONE) begin // skip parity bit
+            #(bit_time);
+        end
+
+        #(bit_time * uart_cfg.num_of_stop_bit); // skip stop bit
 
         `uvm_info(get_type_name(), $sformatf("[Monitor] RX captured: %b",trans.data),UVM_LOW)
         monitor_rx.write(trans);
