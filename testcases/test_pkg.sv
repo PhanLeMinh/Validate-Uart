@@ -23,6 +23,8 @@ package test_pkg;
   // Include your file
   `include "uart_base_test.sv"
   `include "full_duplex_random_test.sv"
+  `include "half_trans_baud_4800_test.sv"
+  
 
 endpackage: test_pkg
 

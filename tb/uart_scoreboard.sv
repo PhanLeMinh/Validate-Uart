@@ -92,11 +92,11 @@ class uart_scoreboard extends uvm_scoreboard;
 
         if(tx_data == rx_data) begin
             pass_count++;
-            `uvm_info(get_type_name(),$sformatf("[Scoreboard] %s [PASSED] - TX=0x%0h,RX=0x%0h", path_name,tx_data,rx_data),UVM_LOW)
+            `uvm_info(get_type_name(),$sformatf("[Scoreboard] %s [PASSED] - TX=0x%0b,RX=0x%0b", path_name,tx_data,rx_data),UVM_LOW)
         end 
         else begin
             fail_count++;
-            `uvm_info(get_type_name(),$sformatf("[Scoreboard] %s [FAILED] - TX=0x%0h,RX=0x%0h",path_name,tx_data,rx_data),UVM_LOW)
+            `uvm_info(get_type_name(),$sformatf("[Scoreboard] %s [FAILED] - TX=0x%0b,RX=0x%0b",path_name,tx_data,rx_data),UVM_LOW)
         end
     endfunction: compare
 
