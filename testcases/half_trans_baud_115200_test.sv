@@ -1,10 +1,10 @@
-class half_trans_baud_4800_test extends uart_base_test;
-    `uvm_component_utils(half_trans_baud_4800_test)
+class half_trans_baud_115200_test extends uart_base_test;
+    `uvm_component_utils(half_trans_baud_115200_test)
 
     uart_sequence lhs_seq;
     uart_configuration uart_cfg;
 
-    function new(string name = "half_trans_baud_4800_test",uvm_component parent);
+    function new(string name = "half_trans_baud_115200_test",uvm_component parent);
         super.new(name,parent);
     endfunction
 
@@ -13,7 +13,7 @@ class half_trans_baud_4800_test extends uart_base_test;
         
         uart_cfg = uart_configuration::type_id::create("uart_cfg");
 
-        if(!uart_cfg.randomize() with {baud_rate == 4800;
+        if(!uart_cfg.randomize() with {baud_rate == 115200;
                                       direction == uart_configuration::TRANS;})
             `uvm_fatal(get_type_name(),"Failed to randomize uart_cfg")
 

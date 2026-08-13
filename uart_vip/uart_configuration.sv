@@ -14,6 +14,7 @@ class uart_configuration extends uvm_object;
         num_of_stop_bit inside {1,2};
         baud_rate > 0;
         baud_rate < 115201;
+        (data_width == 9) -> (parity == NONE);
     }
 
     `uvm_object_utils_begin (uart_configuration)

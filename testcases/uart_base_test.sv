@@ -8,6 +8,7 @@ class uart_base_test extends uvm_test;
     uart_configuration rhs_cfg;
 
     uart_env env;
+    uart_error_catcher err_catcher;
 
     function new(string name="uart_base_test", uvm_component parent);
         super.new(name,parent);
@@ -29,6 +30,9 @@ class uart_base_test extends uvm_test;
             `uvm_fatal(get_type_name(),"Fail to randomize rhs_cfg")
 
         env = uart_env::type_id::create("env",this);
+
+        err_catcher = uart_error_catcher::type_id::create("err_catcher");
+        uvm_report_cb::add(null,err_catcher);
     
         uvm_config_db#(virtual uart_if)::set(this,"env","lhs_vif",lhs_vif);
         uvm_config_db#(virtual uart_if)::set(this,"env","rhs_vif",rhs_vif);
@@ -43,6 +47,25 @@ class uart_base_test extends uvm_test;
         uvm_top.print_topology();
         `uvm_info(get_type_name(), "start_of_simulation_phase: Exiting...",UVM_HIGH)
     endfunction
+
+    virtual function void final_phase(uvm_phase phase);
+        uvm_report_server srv;
+        super.final_phase(phase);
+        `uvm_info("final_phase","Entered...",UVM_HIGH)
+        srv = uvm_report_server::get_server();
+        if(srv.get_severity_count(UVM_FATAL) + srv.get_severity_count(UVM_ERROR) > 0) begin
+            $display("\n033[31m===========================================================");
+            $display("             ##### Status: TEST FAILED #####         ");
+            $display("===========================================================\033[0m\n");
+        end 
+        else begin
+            $display("\n\033[32m==========================================================");
+            $display("              ##### Status: TEST PASSED #####          ");
+            $display("===========================================================\033[0m\n");
+        end
+
+        `uvm_info("final_phase","Exiting...",UVM_HIGH)
+    endfunction: final_phase
 
 
 endclass: uart_base_test

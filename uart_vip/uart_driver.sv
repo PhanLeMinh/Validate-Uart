@@ -22,11 +22,9 @@ class uart_driver extends uvm_driver #(uart_transaction);
     virtual task run_phase(uvm_phase phase);
         forever begin
             uart_vif.tx = 1'b1;
-            seq_item_port.get(req);
+            seq_item_port.get_next_item(req);
             drive(req);
-            $cast(rsp,req.clone());
-            rsp.set_id_info(req);
-            seq_item_port.put(rsp);
+            seq_item_port.item_done();
         end
     endtask: run_phase
 
@@ -34,10 +32,10 @@ class uart_driver extends uvm_driver #(uart_transaction);
        int bit_time;
        bit parity;
 
-       bit_time = (10**9)/uart_cfg.baud_rate;
+       bit_time = (1_000_000)/uart_cfg.baud_rate;
        parity   = 1'b0;
 
-       `uvm_info(get_type_name(),$sformatf("[Driver] Transmit data: %b",req.data),UVM_LOW)
+       `uvm_info(get_type_name(),$sformatf("\033[33mStart transmit data: %0b\033[0m",req.data),UVM_LOW)
 
        // START BIT
        uart_vif.tx = 0;
@@ -46,7 +44,7 @@ class uart_driver extends uvm_driver #(uart_transaction);
        // DATA BIT
        for(int i = 0;i < uart_cfg.data_width; i++) begin
            uart_vif.tx = req.data[i];
-           parity      = parity ^ req.data[i];
+           parity      = parity ^ req.data[i]; // parity 1 | 0
            #(bit_time);
        end
 
@@ -70,6 +68,6 @@ class uart_driver extends uvm_driver #(uart_transaction);
        uart_vif.tx = 1;
        #(uart_cfg.num_of_stop_bit*bit_time);
 
-       `uvm_info(get_type_name(),$sformatf("[Driver] End of transmit"),UVM_LOW)
+       `uvm_info(get_type_name(),$sformatf("End of transmit"),UVM_LOW)
     endtask: drive
 endclass: uart_driver

@@ -1,1 +1,0 @@
-  CREATE_STREAM @0 {NAME:lhs_seq T:Transactions SCOPE:uvm_test_top.env.lhs_agent.sequencer STREAM:759}

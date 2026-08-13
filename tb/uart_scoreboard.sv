@@ -43,25 +43,25 @@ class uart_scoreboard extends uvm_scoreboard;
     endtask
 
     function void write_lhs_tx(uart_transaction uart_trans);
-        `uvm_info(get_type_name(),$sformatf("[Scoreboard] LHS TX received: %b",uart_trans.data),UVM_HIGH)
+        `uvm_info(get_type_name(),$sformatf("LHS TX received: %b",uart_trans.data),UVM_HIGH)
         lhs_tx_q.push_back(uart_trans);
         com_path1();
     endfunction
 
     function void write_rhs_rx(uart_transaction uart_trans);
-        `uvm_info(get_type_name(),$sformatf("[Scoreboard] RHS RX received: %b",uart_trans.data),UVM_HIGH)
+        `uvm_info(get_type_name(),$sformatf("RHS RX received: %b",uart_trans.data),UVM_HIGH)
         rhs_rx_q.push_back(uart_trans);
         com_path1();
     endfunction
 
     function void write_rhs_tx(uart_transaction uart_trans);
-        `uvm_info(get_type_name(),$sformatf("[Scoreboard] RHS TX received: %b",uart_trans.data),UVM_HIGH)
+        `uvm_info(get_type_name(),$sformatf("RHS TX received: %b",uart_trans.data),UVM_HIGH)
          rhs_tx_q.push_back(uart_trans);
          com_path2();
     endfunction
 
     function void write_lhs_rx(uart_transaction uart_trans);
-        `uvm_info(get_type_name(),$sformatf("[Scoreboard] LHS RX received: %b",uart_trans.data),UVM_HIGH)
+        `uvm_info(get_type_name(),$sformatf("LHS RX received: %b",uart_trans.data),UVM_HIGH)
         lhs_rx_q.push_back(uart_trans);
         com_path2();
     endfunction
@@ -72,7 +72,7 @@ class uart_scoreboard extends uvm_scoreboard;
 
         tx_trans = lhs_tx_q.pop_front();
         rx_trans = rhs_rx_q.pop_front();
-        compare(tx_trans,rx_trans,"PATH1: LHS_TX and RHS_RX",lhs_cfg);
+        compare(tx_trans,rx_trans,"[PATH1: LHS_TX and RHS_RX]",lhs_cfg);
     endfunction: com_path1
 
     function void com_path2();
@@ -81,7 +81,7 @@ class uart_scoreboard extends uvm_scoreboard;
 
         tx_trans = rhs_tx_q.pop_front();
         rx_trans = lhs_rx_q.pop_front();
-        compare(tx_trans,rx_trans,"PATH2: RHS_TX and LHS_RX",rhs_cfg);
+        compare(tx_trans,rx_trans,"[PATH2: RHS_TX and LHS_RX]",rhs_cfg);
     endfunction:com_path2
 
     function void compare(uart_transaction tx_trans, uart_transaction rx_trans, string path_name, uart_configuration uart_cfg);
@@ -92,20 +92,20 @@ class uart_scoreboard extends uvm_scoreboard;
 
         if(tx_data == rx_data) begin
             pass_count++;
-            `uvm_info(get_type_name(),$sformatf("[Scoreboard] %s [PASSED] - TX=0x%0b,RX=0x%0b", path_name,tx_data,rx_data),UVM_LOW)
+            `uvm_info(get_type_name(),$sformatf("%s [PASSED] - TX=0x%0b,RX=0x%0b", path_name,tx_data,rx_data),UVM_LOW)
         end 
         else begin
             fail_count++;
-            `uvm_info(get_type_name(),$sformatf("[Scoreboard] %s [FAILED] - TX=0x%0b,RX=0x%0b",path_name,tx_data,rx_data),UVM_LOW)
+            `uvm_error(get_type_name(),$sformatf("%s [FAILED] - TX=0x%0b,RX=0x%0b",path_name,tx_data,rx_data))
         end
     endfunction: compare
 
     virtual function void report_phase(uvm_phase phase);
-        `uvm_info(get_type_name(),"[Scoreboard] ==========SCOREBOARD SUMARY==========",UVM_LOW)
+        `uvm_info(get_type_name()," ==========SCOREBOARD SUMARY==========",UVM_LOW)
         `uvm_info(get_type_name(),$sformatf("[PASS]:%0d | [FAIL]:%0d",pass_count,fail_count),UVM_LOW)
         if(fail_count==0)
-            `uvm_info(get_type_name(),"[Scoreboard] TEST PASSED", UVM_LOW)
+            `uvm_info(get_type_name(),"\033[32m[TEST PASSED]\033[0m", UVM_LOW)
         else
-            `uvm_error(get_type_name(),"[Scoreboard] TEST FAILED")
+            `uvm_error(get_type_name(),"\033[31m[TEST FAILED]\033[0m")
     endfunction: report_phase
 endclass
