@@ -27,7 +27,7 @@ class half_rcv_2_stop_bit_test extends uart_base_test;
 
         `uvm_info(get_type_name(),"run_phase: Start sequence", UVM_LOW)
         rhs_seq = uart_sequence::type_id::create("rhs_seq");
-        rhs_seq.start(env.lhs_agent.sequencer);
+        rhs_seq.start(env.rhs_agent.sequencer);
         #5ms;
         `uvm_info(get_type_name(),"run_phase: DONE...",UVM_LOW)
 

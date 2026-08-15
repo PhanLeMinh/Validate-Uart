@@ -20,6 +20,7 @@ class error_parity_bit_test extends uart_base_test;
         phase.raise_objection(this);
 
         err_catcher.add_error_catcher_msg("Parity bit error");
+        err_catcher.add_error_catcher_msg("Stop bit error");
         lhs_seq = uart_sequence::type_id::create("lhs_seq");
         lhs_seq.start(env.lhs_agent.sequencer);
         #1ms;

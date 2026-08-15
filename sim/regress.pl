@@ -34,6 +34,8 @@ sub run_regress {
   my $seed;
   my $plusarg;
   $start_time = time();
+  system "rm -rf log";
+  system "mkdir -p log";
   system "make build";
   my $size = scalar(@tc_list);
   for(my $i = 0; $i < $size; $i=$i+3) {

@@ -39,7 +39,7 @@ class uart_monitor extends uvm_monitor;
         uart_transaction trans;
         int total_bit;
         int bit_time;
-        int cal_parity, act_parity, exp_parity;
+        bit cal_parity, act_parity, exp_parity;
 
         trans = uart_transaction::type_id::create("trans");
         bit_time = 1_000_000 / uart_cfg.baud_rate;
@@ -69,6 +69,7 @@ class uart_monitor extends uvm_monitor;
             if(act_parity !== exp_parity) begin
                 `uvm_error(get_type_name(),$sformatf("[Error] Parity bit error: mode = %0s, act = %0b, exp = %0b",uart_cfg.parity.name(),act_parity,exp_parity))
             end
+            #(bit_time);
         end
     
         // Stop bit
@@ -89,7 +90,7 @@ class uart_monitor extends uvm_monitor;
         uart_transaction trans;
         int total_bit;
         int bit_time;
-        int cal_parity, act_parity, exp_parity;
+        bit cal_parity, act_parity, exp_parity;
 
         trans = uart_transaction::type_id::create("trans");
         total_bit = cal_total_bit();
@@ -129,7 +130,7 @@ class uart_monitor extends uvm_monitor;
         // Stop bit
         for(int i = 0; i < uart_cfg.num_of_stop_bit;i++) begin
             if(uart_vif.rx !== 1'b1)
-                `uvm_error(get_type_name(),$sformatf("[Error] Stop bit error #%0d = %0b (expected 1)",i,uart_vif.tx))
+                `uvm_error(get_type_name(),$sformatf("[Error] Stop bit error #%0d = %0b (expected 1)",i,uart_vif.rx))
             if(i != uart_cfg.num_of_stop_bit - 1) 
                 #(bit_time);
             else

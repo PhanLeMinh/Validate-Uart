@@ -19,7 +19,8 @@ class error_baud_test extends uart_base_test;
     virtual task run_phase(uvm_phase phase);
         phase.raise_objection(this);
 
-        err_catcher.add_error_catcher_msg("FAILED"); 
+        err_catcher.add_error_catcher_msg("FAILED");
+        err_catcher.add_error_catcher_msg("TEST FAILED");
         lhs_seq = uart_sequence::type_id::create("lhs_seq");
         lhs_seq.start(env.lhs_agent.sequencer);
         #1ms;

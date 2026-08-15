@@ -104,8 +104,8 @@ class uart_scoreboard extends uvm_scoreboard;
         `uvm_info(get_type_name()," ==========SCOREBOARD SUMARY==========",UVM_LOW)
         `uvm_info(get_type_name(),$sformatf("[PASS]:%0d | [FAIL]:%0d",pass_count,fail_count),UVM_LOW)
         if(fail_count==0)
-            `uvm_info(get_type_name(),"\033[32m[TEST PASSED]\033[0m", UVM_LOW)
+            `uvm_info(get_type_name(),"\033[32mRESULT: PASSED\033[0m", UVM_LOW)
         else
-            `uvm_error(get_type_name(),"\033[31m[TEST FAILED]\033[0m")
+            `uvm_error(get_type_name(),"\033[31mRESULT: FAILED\033[0m")
     endfunction: report_phase
 endclass
