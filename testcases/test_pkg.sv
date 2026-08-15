@@ -80,9 +80,10 @@ package test_pkg;
   `include "full_stop_1_bit_test.sv"
   `include "full_stop_2_bit_test.sv"
 
-  //`include "error_baud_test.sv"
-  //`include "error_stop_bit_test.sv"
-  //`include "error_parity_bit_test.sv"
+  `include "error_baud_test.sv"
+  `include "error_stop_bit_test.sv"
+  `include "error_parity_bit_test.sv"
+  `include "error_any_data_bit_test.sv"
 
 endpackage: test_pkg
 

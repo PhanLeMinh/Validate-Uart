@@ -54,7 +54,7 @@ class uart_base_test extends uvm_test;
         `uvm_info("final_phase","Entered...",UVM_HIGH)
         srv = uvm_report_server::get_server();
         if(srv.get_severity_count(UVM_FATAL) + srv.get_severity_count(UVM_ERROR) > 0) begin
-            $display("\n033[31m===========================================================");
+            $display("\n\033[31m===========================================================");
             $display("             ##### Status: TEST FAILED #####         ");
             $display("===========================================================\033[0m\n");
         end 

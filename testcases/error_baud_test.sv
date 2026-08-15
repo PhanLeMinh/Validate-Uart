@@ -9,8 +9,8 @@ class error_baud_test extends uart_base_test;
 
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        lhs_cfg.randomize() with {baud_rate==4800;direction==uart_configuration::TRANS;};
-        rhs_cfg.randomize() with {baud_rate==9600;direction==uart_configuration::REV;};
+        assert(lhs_cfg.randomize() with {baud_rate==4800;parity==NONE;num_of_stop_bit==1;data_width==8;direction==uart_configuration::TRANS;});
+        assert(rhs_cfg.randomize() with {baud_rate==9600;parity==NONE;num_of_stop_bit==1;data_width==8;direction==uart_configuration::REV;});
 
         `uvm_info(get_type_name(),$sformatf("LHS Config: \n%s",lhs_cfg.sprint()),UVM_LOW)
         `uvm_info(get_type_name(),$sformatf("RHS Config: \n%s",rhs_cfg.sprint()),UVM_LOW)

@@ -62,7 +62,7 @@ class uart_monitor extends uvm_monitor;
             act_parity = uart_vif.tx;
 
             case(uart_cfg.parity)   
-                uart_configurtaion::EVEN: exp_parity = cal_parity;
+                uart_configuration::EVEN: exp_parity = cal_parity;
                 uart_configuration::ODD: exp_parity = ~cal_parity;
             endcase
 
@@ -128,7 +128,7 @@ class uart_monitor extends uvm_monitor;
         
         // Stop bit
         for(int i = 0; i < uart_cfg.num_of_stop_bit;i++) begin
-            if(uart_vif.tx !== 1'b1)
+            if(uart_vif.rx !== 1'b1)
                 `uvm_error(get_type_name(),$sformatf("[Error] Stop bit error #%0d = %0b (expected 1)",i,uart_vif.tx))
             if(i != uart_cfg.num_of_stop_bit - 1) 
                 #(bit_time);
