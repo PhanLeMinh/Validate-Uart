@@ -6,4 +6,5 @@
 - Verified functionality via scoreboard comparison, ensuring correct operation in both half-duplex and full-duplex modes.
 - Testcases were created please read in file Vplan.
 - Testbench structure
-<img width="1201" height="627" alt="image" src="https://github.com/user-attachments/assets/4d41d0e8-f869-4afb-a747-7b5cc3e31e7c" />
+<img width="1190" height="622" alt="image" src="https://github.com/user-attachments/assets/ce05ab27-dcd3-4519-8ec8-075b861a4e79" />
+
